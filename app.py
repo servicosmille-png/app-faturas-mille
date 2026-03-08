@@ -7,6 +7,53 @@ import json
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="App Faturas", page_icon="🧾", layout="centered")
 
+# --- HACK PARA DESTRUIR A LOGO DO STREAMLIT NO CELULAR ---
+st.markdown("""
+    <script>
+        // 1. Remove o arquivo de instalação original do Streamlit
+        var links = document.getElementsByTagName('link');
+        for (var i = 0; i < links.length; i++) {
+            if (links[i].rel === 'manifest') {
+                links[i].parentNode.removeChild(links[i]);
+            }
+        }
+
+        // 2. Cria o arquivo de instalação da Mille Viagens
+        var myManifest = {
+            "name": "App Faturas Mille",
+            "short_name": "Faturas",
+            "start_url": window.location.href,
+            "display": "standalone",
+            "icons": [
+                {
+                    "src": "https://raw.githubusercontent.com/servicosmille-png/app-faturas-mille/main/logo_mille.png",
+                    "sizes": "192x192",
+                    "type": "image/png"
+                },
+                {
+                    "src": "https://raw.githubusercontent.com/servicosmille-png/app-faturas-mille/main/logo_mille.png",
+                    "sizes": "512x512",
+                    "type": "image/png"
+                }
+            ]
+        };
+
+        var manifestBlob = new Blob([JSON.stringify(myManifest)], {type: 'application/manifest+json'});
+        var manifestUrl = URL.createObjectURL(manifestBlob);
+
+        var newManifest = document.createElement('link');
+        newManifest.rel = 'manifest';
+        newManifest.href = manifestUrl;
+        document.head.appendChild(newManifest);
+
+        // 3. Força o ícone para iPhone/iPad
+        var appleIcon = document.createElement('link');
+        appleIcon.rel = 'apple-touch-icon';
+        appleIcon.href = "https://raw.githubusercontent.com/servicosmille-png/app-faturas-mille/main/logo_mille.png";
+        document.head.appendChild(appleIcon);
+    </script>
+""", unsafe_allow_html=True)
+
 # --- FORÇAR ÍCONE NO CELULAR (Link Direto) ---
 st.markdown("""
     <script>
