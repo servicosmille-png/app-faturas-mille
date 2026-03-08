@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
-st.set_page_config(page_title="App Faturas", page_icon="📱", layout="centered")
+st.set_page_config(page_title="App Faturas", page_icon="🧾", layout="centered")
 
 # --- FORÇAR ÍCONE NO CELULAR (Link Direto) ---
 st.markdown("""
