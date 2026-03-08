@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
-st.set_page_config(page_title="App Faturas", page_icon="Logo Mile.png", layout="centered")
+st.set_page_config(page_title="App Faturas", page_icon="logo_mille.png", layout="centered")
 # --- CONEXÃO COM O FIREBASE (NUVEM E LOCAL) ---
 @st.cache_resource
 def conectar_firebase():
