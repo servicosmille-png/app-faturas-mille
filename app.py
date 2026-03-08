@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
-st.set_page_config(page_title="App Faturas", page_icon="🧾", layout="centered")
+st.set_page_config(page_title="App Faturas", page_icon="logo_mille.png", layout="centered")
 
 # --- HACK PARA DESTRUIR A LOGO DO STREAMLIT NO CELULAR ---
 st.markdown("""
@@ -50,19 +50,6 @@ st.markdown("""
         var appleIcon = document.createElement('link');
         appleIcon.rel = 'apple-touch-icon';
         appleIcon.href = "https://raw.githubusercontent.com/servicosmille-png/app-faturas-mille/main/logo_mille.png";
-        document.head.appendChild(appleIcon);
-    </script>
-""", unsafe_allow_html=True)
-
-# --- FORÇAR ÍCONE NO CELULAR (Link Direto) ---
-st.markdown("""
-    <script>
-        var logoUrl = "https://raw.githubusercontent.com/servicosmille-png/app-faturas-mille/main/logo_mille.png";
-        var links = document.querySelectorAll("link[rel*='icon']");
-        links.forEach(l => l.href = logoUrl);
-        var appleIcon = document.createElement('link');
-        appleIcon.rel = 'apple-touch-icon';
-        appleIcon.href = logoUrl;
         document.head.appendChild(appleIcon);
     </script>
 """, unsafe_allow_html=True)
