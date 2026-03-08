@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
-st.set_page_config(page_title="App Faturas", page_icon="logo_mille.png", layout="centered")
+st.set_page_config(page_title="App Faturas", page_icon="📱", layout="centered")
 
 # --- FORÇAR ÍCONE NO CELULAR (Link Direto) ---
 st.markdown("""
@@ -21,15 +21,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- CONEXÃO COM O FIREBASE (NUVEM E LOCAL) ---
-# --- CONEXÃO COM O FIREBASE (NUVEM E LOCAL) ---
 @st.cache_resource
 def conectar_firebase():
     if not firebase_admin._apps:
-        # Se estiver na nuvem, pega a chave do cofre secreto do Streamlit
         if "firebase_json" in st.secrets:
             key_dict = json.loads(st.secrets["firebase_json"])
             cred = credentials.Certificate(key_dict)
-        # Se estiver no seu Mac, usa o arquivo local
         else:
             cred = credentials.Certificate("firebase-key.json")
         firebase_admin.initialize_app(cred)
