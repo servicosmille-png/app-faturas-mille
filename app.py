@@ -3,9 +3,28 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime
 import json
+import base64
 
 # --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="App Faturas", page_icon="logo_mille.png", layout="centered")
+
+# --- FORÇAR ÍCONE NO CELULAR ---
+try:
+    with open("logo_mille.png", "rb") as img_file:
+        b64_string = base64.b64encode(img_file.read()).decode()
+    st.markdown(f"""
+        <script>
+            var links = document.querySelectorAll("link[rel*='icon']");
+            links.forEach(l => l.href = 'data:image/png;base64,{b64_string}');
+            var appleIcon = document.createElement('link');
+            appleIcon.rel = 'apple-touch-icon';
+            appleIcon.href = 'data:image/png;base64,{b64_string}';
+            document.head.appendChild(appleIcon);
+        </script>
+    """, unsafe_allow_html=True)
+except:
+    pass
+
 # --- CONEXÃO COM O FIREBASE (NUVEM E LOCAL) ---
 @st.cache_resource
 def conectar_firebase():
